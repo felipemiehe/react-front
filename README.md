@@ -1,2 +1,2 @@
 # react-front
-Created with CodeSandbox
+npm i --legacy-peer-deps
