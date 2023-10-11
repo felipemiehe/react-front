@@ -7,7 +7,7 @@ export const ProtectedLayout = () => {
   const outlet = useOutlet();
 
   if (!user) {
-    return <Navigate to="/" />;
+    return <Navigate to="/login" />;
   }
 
   return (
