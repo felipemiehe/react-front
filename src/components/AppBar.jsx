@@ -15,12 +15,15 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 import AccountMenu from "../components/AccountMenu/AccountMenu";
 import {useState} from "react";
+import { useLocation } from "react-router-dom";
 
 export const AppBar = ({ pages }) => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const navigate = useNavigate();
   const { user, logout } = useAuth();
-  const [focusedButton, setFocusedButton] = useState('Home');
+  const location = useLocation();
+  const pageTitle = location.pathname === '/' ? 'Home' : 'Login';
+  const [focusedButton, setFocusedButton] = useState(!user ? pageTitle: 'Profile')
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
