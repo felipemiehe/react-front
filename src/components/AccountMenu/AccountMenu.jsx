@@ -13,7 +13,7 @@ import Logout from '@mui/icons-material/Logout';
 export default function AccountMenu({name, logout}) {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
-    const handleClick = (event: React.MouseEvent<>) => {
+    const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
     const handleClose = () => {
