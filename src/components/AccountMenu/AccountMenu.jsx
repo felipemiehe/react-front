@@ -9,10 +9,13 @@ import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
+import Loading from "../loading/Loading";
+import {useState} from "react";
 
 export default function AccountMenu({name, logout}) {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
+    const[isLoading, setIsloading]= useState(false);
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
@@ -80,13 +83,14 @@ export default function AccountMenu({name, logout}) {
                     </ListItemIcon>
                     Settings
                 </MenuItem>
-                <MenuItem onClick={logout}>
+                <MenuItem onClick={()=>{setIsloading(true);logout()}}>
                     <ListItemIcon>
                         <Logout fontSize="small" />
                     </ListItemIcon>
                     Logout
                 </MenuItem>
             </Menu>
+            {isLoading && <Loading/> }
         </React.Fragment>
     );
 }

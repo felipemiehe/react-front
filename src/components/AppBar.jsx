@@ -14,11 +14,13 @@ import MenuItem from "@mui/material/MenuItem";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 import AccountMenu from "../components/AccountMenu/AccountMenu";
+import {useState} from "react";
 
 export const AppBar = ({ pages }) => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const navigate = useNavigate();
   const { user, logout } = useAuth();
+  const [focusedButton, setFocusedButton] = useState('Home');
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -29,6 +31,14 @@ export const AppBar = ({ pages }) => {
     if (path) {
       navigate(path);
     }
+  };
+  const handleFocus = (buttonKey) => {
+    setFocusedButton(buttonKey);
+  };
+
+  const handleClick = (buttonKey, path) => {
+    handleCloseNavMenu(path);
+    handleFocus(buttonKey);
   };
 
   return (
@@ -93,16 +103,30 @@ export const AppBar = ({ pages }) => {
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages?.map((page) => (
-              <Button
-                key={page.label}
-                onClick={() => handleCloseNavMenu(page.path)}
-                sx={{ my: 2, color: "white", display: "block" , transition: 'background-color 0.3s',
-                  '&:hover': {
-                    backgroundColor: 'grey',
-                  },}}
-              >
-                {page.label}
-              </Button>
+                <Button
+                    key={page.label}
+                    onClick={() => handleClick(page.label, page.path)}
+                    className={focusedButton === page.label ? 'custom-focus' : ''}
+                    sx={{
+                      my: 2,
+                      color: "white",
+                      display: "block",
+                      transition: 'background-color 0.3s',
+                      '&:hover': {
+                        backgroundColor: 'grey',
+                      },
+                      ...(focusedButton === page.label && {
+                        borderBottom: '2px solid grey',
+                        borderRadius: '0',
+                        '&:hover': {
+                          backgroundColor: 'initial',
+                        },
+                      }),
+                    }}
+                    onFocus={() => handleFocus(page.label)}
+                >
+                  {page.label}
+                </Button>
             ))}
           </Box>
           {!!user && (
