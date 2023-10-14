@@ -13,6 +13,7 @@ import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
+import AccountMenu from "../components/AccountMenu/AccountMenu";
 
 export const AppBar = ({ pages }) => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -32,7 +33,7 @@ export const AppBar = ({ pages }) => {
 
   return (
     <MuiAppBar position="static">
-      <Container maxWidth="xl">
+      <Container maxWidth="false">
         <Toolbar disableGutters>
           <Typography
             variant="h6"
@@ -80,11 +81,6 @@ export const AppBar = ({ pages }) => {
                   <Typography textAlign="center">{page.label}</Typography>
                 </MenuItem>
               ))}
-              {!!user && (
-                <MenuItem key={"logout"} onClick={logout}>
-                  <Typography textAlign="center">Logout</Typography>
-                </MenuItem>
-              )}
             </Menu>
           </Box>
           <Typography
@@ -100,21 +96,21 @@ export const AppBar = ({ pages }) => {
               <Button
                 key={page.label}
                 onClick={() => handleCloseNavMenu(page.path)}
-                sx={{ my: 2, color: "white", display: "block" }}
+                sx={{ my: 2, color: "white", display: "block" , transition: 'background-color 0.3s',
+                  '&:hover': {
+                    backgroundColor: 'grey',
+                  },}}
               >
                 {page.label}
               </Button>
             ))}
-            {!!user && (
-              <Button
-                key={"logout"}
-                onClick={logout}
-                sx={{ my: 2, color: "white", display: "block" }}
-              >
-                {"logout"}
-              </Button>
-            )}
           </Box>
+          {!!user && (
+              <Box sx={{ display: "flex", gap: 1, alignItems: "center" }}>
+                <AccountMenu name={user.name} logout={logout}></AccountMenu>
+              </Box>
+
+          )}
         </Toolbar>
       </Container>
     </MuiAppBar>
