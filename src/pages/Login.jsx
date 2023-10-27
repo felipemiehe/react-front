@@ -13,6 +13,7 @@ import Loading from "../components/loading/Loading";
 import {useState} from "react";
 import {Alert} from "@mui/material";
 import {useForm} from "react-hook-form";
+import {BasicPage} from "../components/BasicPage";
 
 
 export const LoginPage = () => {
@@ -66,7 +67,7 @@ export const LoginPage = () => {
     }
   };
 
-  return (
+  return (<BasicPage>
     <Container component="main" maxWidth="xs">
       <Box
         sx={{
@@ -128,5 +129,6 @@ export const LoginPage = () => {
       {isLoading && <Loading/> }
 
     </Container>
+    </BasicPage>
   );
 };

@@ -2,24 +2,42 @@ import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
+import Footer from "./footer/Footer";
 
 export const BasicPage = ({ title, icon, ...props }) => {
+
   return (
-    <Container component="main" maxWidth="xs">
       <Box
-        sx={{
-          marginTop: 8,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center"
-        }}
+          sx={{
+              height: '90vh',
+              width: '100%',
+              display: 'flex',
+              flexDirection: 'column',
+
+          }}
       >
-        <Avatar sx={{ m: 1, bgcolor: "primary.main" }}>{icon}</Avatar>
-        <Typography component="h1" variant="h5">
-          {title}
-        </Typography>
+          <Box
+              sx={{
+                  height: '90%',
+                  width: '100%'
+
+              }}
+          >
+            {props.children}
+
+          </Box>
+          <Box
+              sx={{
+                  height: '10%',
+                  width: '100%',
+                  bottom: 0,
+
+              }}
+          >
+              <Footer/>
+
+          </Box>
       </Box>
-      {props.children}
-    </Container>
+
   );
 };

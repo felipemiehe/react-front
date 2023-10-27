@@ -45,19 +45,19 @@ export const AppBar = ({ pages }) => {
   };
 
   return (
-    <MuiAppBar position="static">
+    <MuiAppBar position="static" sx={{ backgroundColor: 'white', boxShadow: 'none' }}>
       <Container maxWidth="false">
         <Toolbar disableGutters>
           <Typography
             variant="h6"
             noWrap
             component="div"
-            sx={{ mr: 2, display: { xs: "none", md: "flex" } }}
+            sx={{ mr: 2, display: { xs: "none", md: "flex" } , color:'black' }}
           >
             React Router Auth
           </Typography>
 
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" }, color:'black' }}>
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -91,7 +91,9 @@ export const AppBar = ({ pages }) => {
                   key={page.label}
                   onClick={() => handleCloseNavMenu(page.path)}
                 >
-                  <Typography textAlign="center">{page.label}</Typography>
+                  <Typography textAlign="center"
+                  >
+                    {page.label}</Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -100,11 +102,11 @@ export const AppBar = ({ pages }) => {
             variant="h6"
             noWrap
             component="div"
-            sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
+            sx={{ flexGrow: 1, display: { xs: "flex", md: "none" }, color:'black' }}
           >
             React Router Auth
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex"} }}>
             {pages?.map((page) => (
                 <Button
                     key={page.label}
@@ -112,11 +114,11 @@ export const AppBar = ({ pages }) => {
                     className={focusedButton === page.label ? 'custom-focus' : ''}
                     sx={{
                       my: 2,
-                      color: "white",
+                      color: "black",
                       display: "block",
                       transition: 'background-color 0.3s',
                       '&:hover': {
-                        backgroundColor: 'grey',
+                        backgroundColor: '#e3e3e3',
                       },
                       ...(focusedButton === page.label && {
                         borderBottom: '2px solid grey',
